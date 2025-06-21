@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>المنتجات | 404</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* --- General Animation --- */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animated-item {
+      opacity: 0; /* Start hidden */
+      animation: fadeInUp 0.8s ease-out forwards;
+      /* Base animation, delay will be added inline or via specific selectors */
+    }
+    /* --- End General Animation --- */
+
+    :root {
+      --primary-color: #00ffd5;
+      --secondary-color: #1a1a1a;
+      --bg-color: #0a0a0a;
+      --card-bg: #1a1a1a;
+      --text-color: #fff;
+      --text-secondary: #aaa;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 255, 213, 0.1);
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none; /* Ensure no bullet points if using ul */
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    /* --- Mobile Menu Button --- */
+    .menu-toggle {
+        display: none; /* Hidden by default */
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+
+    /* --- Mobile Menu Styles --- */
+    .mobile-menu {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0; /* Start from the top */
+        right: -100%; /* Start off-screen */
+        width: 80%; /* Adjust width as needed */
+        max-width: 300px; /* Max width */
+        height: 100vh; /* Full height */
+        background-color: rgba(26, 26, 26, 0.98); /* Slightly transparent dark background */
+        backdrop-filter: blur(15px);
+        padding: 6rem 2rem 2rem; /* Padding top to avoid navbar overlap */
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        transition: right 0.4s ease-in-out; /* Smooth transition */
+        z-index: 999; /* Below navbar but above content */
+        text-align: center;
+    }
+
+    .mobile-menu.active {
+        right: 0; /* Slide in */
+        display: flex; /* Use flex for centering */
+        flex-direction: column;
+        align-items: center; /* Center items horizontally */
+        justify-content: center; /* Center items vertically */
+    }
+
+    .mobile-nav-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .mobile-nav-links li {
+        margin-bottom: 2rem; /* Spacing between links */
+    }
+
+    .mobile-nav-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1.4rem; /* Larger font size for mobile */
+        font-weight: 600;
+        display: block; /* Make the whole area clickable */
+        transition: var(--transition);
+    }
+
+    .mobile-nav-links a:hover {
+        color: var(--primary-color);
+        transform: scale(1.1);
+    }
+
+    .page-header {
+      padding-top: 120px; /* Adjusted for fixed navbar */
+      padding-bottom: 4rem;
+      text-align: center;
+      background-color: var(--secondary-color); /* Optional: subtle background for header */
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+     .page-header p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+       max-width: 600px;
+       margin: 0 auto;
+    }
+
+    .products-container {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+    }
+
+    .product-card:has(.contact-options.active) {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 40px rgba(0, 255, 213, 0.15), 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .product-card .product-carousel,
+    .product-card > img {
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 30px rgba(0, 255, 213, 0.2);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 1.5rem;
+      position: relative;
+      overflow: visible;
+    }
+
+    .product-info h3 {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-info p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .buy-btn:hover {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    footer {
+      background-color: var(--secondary-color);
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-section h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .footer-section p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        display: none; /* Hide desktop links on mobile */
+      }
+
+      .menu-toggle {
+        display: block; /* Show hamburger button */
+      }
+
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .products-container {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding: 0 0.2rem;
+      }
+
+      .products-section {
+        padding: 0.7rem 0.2rem;
+        margin-bottom: 1.5rem;
+      }
+      .products-section h2 {
+        font-size: 1.1rem;
+        padding-right: 0.4rem;
+        text-align: center;
+        border-right: none;
+        border-bottom: 3px solid #00ffd5;
+        padding-bottom: 0.4rem;
+        margin-bottom: 1rem;
+      }
+      .products-nav {
+        gap: 0.5rem;
+        padding: 0.5rem 0.1rem;
+        font-size: 0.95rem;
+        max-width: 100vw;
+        overflow-x: auto;
+        white-space: nowrap;
+        border-radius: 10px;
+        margin: 1.2rem auto 0.7rem auto;
+      }
+      .products-nav a {
+        font-size: 0.95rem;
+        padding: 0.35rem 0.7rem;
+        min-width: 80px;
+        text-align: center;
+        display: inline-block;
+      }
+      .product-card {
+        margin: 0 auto;
+        width: 98vw;
+        max-width: 420px;
+        min-width: 0;
+        border-radius: 12px;
+      }
+      .custom-design-card {
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+      }
+      .product-info h3 {
+        font-size: 1.05rem;
+      }
+      .buy-btn {
+        font-size: 0.98rem;
+        padding: 0.7rem 1.1rem;
+      }
+    }
+
+    /* Ensure smooth transitions */
+    .nav-links a, .product-card, .product-card img, .buy-btn, .social-links a {
+        transition: var(--transition);
+    }
+
+     /* Style for animated items */
+    .products-container .product-card {
+        opacity: 0; /* Start hidden */
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Add staggered delays */
+    .products-container .product-card:nth-child(1) { animation-delay: 0.2s; }
+    .products-container .product-card:nth-child(2) { animation-delay: 0.3s; }
+    .products-container .product-card:nth-child(3) { animation-delay: 0.4s; }
+    .products-container .product-card:nth-child(4) { animation-delay: 0.5s; }
+    .products-container .product-card:nth-child(5) { animation-delay: 0.6s; }
+    .products-container .product-card:nth-child(6) { animation-delay: 0.7s; }
+    /* Add more if you have more products */
+
+    .custom-design-card {
+      background: linear-gradient(135deg, rgba(0,255,213,0.12) 0%, rgba(26,26,26,0.85) 100%);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      border: 3px solid;
+      border-image: linear-gradient(90deg, #00ffd5, #ffd600, #ff00ff, #00ffd5) 1;
+      box-shadow: 0 8px 40px 0 rgba(0,0,0,0.28), 0 2px 12px rgba(0,255,213,0.10);
+      padding: 2.8rem 1.5rem 2.2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2.2rem;
+      animation: fadeSlideIn 1.1s cubic-bezier(.36,1.5,.56,1) 1;
+      transition: box-shadow 0.3s, transform 0.3s, border 0.3s;
+    }
+    .custom-design-card:hover {
+      box-shadow: 0 16px 60px 0 #00ffd555, 0 4px 24px #ffd60055;
+      transform: scale(1.025) translateY(-4px);
+      border-image: linear-gradient(90deg, #ffd600, #00ffd5, #ff00ff, #ffd600) 1;
+    }
+    @keyframes fadeSlideIn {
+      0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .custom-design-card .tshirt-icon {
+      margin-bottom: 1.3rem;
+      transition: fill 0.3s, transform 0.3s;
+      filter: drop-shadow(0 2px 16px #00ffd555);
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.35), 0 1.5px 8px rgba(0,0,0,0.10);
+      cursor: pointer;
+      will-change: transform;
+      width: 110px;
+      height: 110px;
+      display: block;
+      background: transparent;
+      border-radius: 22px;
+    }
+    .custom-design-card .tshirt-icon:hover {
+      transform: scale(1.10) rotate(-4deg);
+    }
+    .custom-design-card .tshirt-bounce {
+      animation: tshirt-bounce 0.5s cubic-bezier(.36,1.5,.56,1) 1;
+    }
+    @keyframes tshirt-bounce {
+      0%   { transform: scale(1) translateY(0); }
+      30%  { transform: scale(1.12,0.92) translateY(-8px); }
+      50%  { transform: scale(0.96,1.08) translateY(4px); }
+      70%  { transform: scale(1.04,0.98) translateY(-2px); }
+      100% { transform: scale(1) translateY(0); }
+    }
+    .custom-design-card .subtitle {
+      color: #fff;
+      font-size: 1.13rem;
+      margin-bottom: 0.8rem;
+      opacity: 0.92;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-shadow: 0 1px 8px #0005;
+    }
+    .custom-design-card .color-bar-label {
+      color: #fff;
+      font-size: 1.01rem;
+      margin-bottom: 0.4rem;
+      opacity: 0.85;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    .custom-design-card .color-bar-gradient {
+      width: 200px;
+      height: 32px;
+      border-radius: 16px;
+      background: linear-gradient(90deg, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 1px 8px #00ffd522;
+      border: 2.5px solid #fff;
+      margin: 0 auto 1.1rem auto;
+      display: block;
+    }
+    .custom-design-card .color-bar-indicator {
+      position: absolute;
+      top: -18px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 3px solid #ffd600;
+      box-shadow: 0 0 0 3px #ffd60044;
+      pointer-events: none;
+      transition: left 0.2s, background 0.2s;
+      z-index: 2;
+    }
+    .custom-design-card .product-info {
+      text-align: center;
+      margin-top: 1.2rem;
+    }
+    .custom-design-card .product-info h3 {
+      color: #fff;
+      margin-bottom: 0.5rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-shadow: 0 1px 8px #0005;
+    }
+    .custom-design-card .product-info p {
+      color: #fff;
+      opacity: 0.93;
+      font-size: 1.08rem;
+      margin-bottom: 1.1rem;
+      font-weight: 400;
+      text-shadow: 0 1px 8px #0005;
+    }
+    .custom-design-card .buy-btn {
+      display: inline-block;
+      padding: 1.1rem 2.5rem;
+      background: linear-gradient(90deg, #00ffd5 0%, #ffd600 100%);
+      color: #222;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 1.13rem;
+      border: none;
+      margin-top: 0.5rem;
+      box-shadow: 0 2px 18px #00ffd555, 0 1.5px 8px #ffd60055;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .custom-design-card .buy-btn:hover {
+      background: linear-gradient(90deg, #ffd600 0%, #00ffd5 100%);
+      color: #111;
+      box-shadow: 0 4px 28px #00ffd555, 0 2px 12px #ffd60055;
+      transform: scale(1.06);
+    }
+
+    /* Contact Options Dropdown */
+    .contact-options {
+      position: relative;
+      display: inline-block;
+      z-index: 10;
+    }
+
+    .contact-options.active {
+      z-index: 9999;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .contact-btn:hover {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    .contact-btn::after {
+      content: '▼';
+      margin-left: 0.5rem;
+      font-size: 0.8rem;
+      transition: transform 0.3s;
+    }
+
+    .contact-options.active .contact-btn::after {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: static;
+      width: 100%;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 213, 0.3);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      margin-top: 0.8rem;
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+
+    .contact-options.active .dropdown-menu {
+      max-height: 120px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.2rem;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+      background: linear-gradient(90deg, rgba(0, 255, 213, 0.15), rgba(255, 214, 0, 0.1));
+      color: var(--primary-color);
+      transform: translateX(5px);
+    }
+
+    .dropdown-item::before {
+      content: '';
+      position: absolute;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 213, 0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .dropdown-item:hover::before {
+      left: 100%;
+    }
+
+    .dropdown-item i {
+      margin-left: 0.6rem;
+      font-size: 1.3rem;
+      width: 24px;
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    .dropdown-item:hover i {
+      transform: scale(1.2);
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    }
+
+    .dropdown-item .whatsapp {
+      color: #25D366;
+    }
+
+    .dropdown-item .instagram {
+      color: #E4405F;
+    }
+
+    .dropdown-item:hover .whatsapp {
+      color: #20C55A;
+      text-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
+    }
+
+    .dropdown-item:hover .instagram {
+      color: #D63384;
+      text-shadow: 0 0 10px rgba(228, 64, 95, 0.5);
+    }
+
+    /* Custom design card contact button */
+    .custom-design-card .contact-options .contact-btn {
+      background: linear-gradient(90deg, #00ffd5 0%, #ffd600 100%);
+      color: #222;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 1.13rem;
+      padding: 1.1rem 2.5rem;
+      margin-top: 0.5rem;
+      box-shadow: 0 2px 18px #00ffd555, 0 1.5px 8px #ffd60055;
+      letter-spacing: 0.01em;
+    }
+
+    .custom-design-card .contact-options .contact-btn:hover {
+      background: linear-gradient(90deg, #ffd600 0%, #00ffd5 100%);
+      color: #111;
+      box-shadow: 0 4px 28px #00ffd555, 0 2px 12px #ffd60055;
+      transform: scale(1.06);
+    }
+    .products-section {
+      margin-bottom: 3rem;
+      padding: 2rem 1rem;
+      background: rgba(26,26,26,0.7);
+      border-radius: 18px;
+      box-shadow: 0 2px 16px #00ffd522;
+    }
+    .products-section h2 {
+      color: #ffd600;
+      margin-bottom: 1.5rem;
+      text-align: right;
+      font-size: 2rem;
+      border-right: 5px solid #00ffd5;
+      padding-right: 1rem;
+    }
+    @media (max-width: 768px) {
+      .products-section {
+        padding: 1rem 0.5rem;
+      }
+      .products-section h2 {
+        font-size: 1.3rem;
+        padding-right: 0.5rem;
+      }
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .products-nav {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 2.5rem auto 1.5rem auto;
+      padding: 1rem 0.5rem;
+      background: linear-gradient(90deg, #1a1a1a 80%, #00ffd5 100%);
+      border-radius: 16px;
+      box-shadow: 0 2px 16px #00ffd522;
+      max-width: 700px;
+      position: relative;
+      z-index: 10;
+    }
+    .products-nav a {
+
+      color: #ffd600;
+      font-weight: 800;
+      font-size: 1.15rem;
+      text-decoration: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      letter-spacing: 0.01em;
+      position: relative;
+      display: inline-block;
+    }
+    .products-nav a:hover, .products-nav a:focus {
+      background: linear-gradient(90deg, #00ffd5 0%, #ffd600 100%);
+      color: #1a1a1a;
+      transform: scale(1.08);
+      box-shadow: 0 2px 12px #ffd60055;
+    }
+    @media (max-width: 768px) {
+      .products-nav {
+        margin-top: 130px;
+        gap: 1rem;
+        padding: 0.7rem 0.2rem;
+        font-size: 0.95rem;
+        max-width: 98vw;
+      }
+      .products-nav a {
+        font-size: 0.98rem;
+        padding: 0.4rem 0.7rem;
+      }
+    }
+    .glassy-nav {
+      background: rgba(26,26,26,0.65);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(0,255,213,0.13);
+      box-shadow: 0 4px 32px #00ffd522, 0 1.5px 8px #ffd60022;
+    }
+    .products-nav a {
+      position: relative;
+      overflow: visible;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+    }
+    .products-nav .nav-icon {
+      font-size: 1.2em;
+      vertical-align: middle;
+      filter: drop-shadow(0 1px 4px #ffd60088);
+      margin-left: 0.1em;
+    }
+    .products-nav a:hover, .products-nav a:focus {
+      background: linear-gradient(90deg, #00ffd5 0%, #ffd600 100%);
+      color: #1a1a1a;
+      transform: scale(1.12);
+      box-shadow: 0 2px 18px #ffd60099, 0 0 16px #00ffd5cc;
+      text-shadow: 0 1px 8px #ffd60055;
+    }
+    .products-nav a.active, .products-nav a.selected {
+      box-shadow: 0 0 0 4px #00ffd555, 0 2px 18px #ffd60099;
+      background: linear-gradient(90deg, #ffd600 0%, #00ffd5 100%);
+      color: #1a1a1a;
+      text-shadow: 0 1px 8px #ffd60055;
+      border-radius: 12px;
+      animation: nav-glow 1.2s infinite alternate;
+    }
+    @keyframes nav-glow {
+      0% { box-shadow: 0 0 0 4px #00ffd555, 0 2px 18px #ffd60099; }
+      100% { box-shadow: 0 0 0 10px #ffd60033, 0 2px 28px #00ffd5cc; }
+    }
+    @media (max-width: 768px) {
+      .products-nav {
+        margin-top: 130px;
+      }
+      .products-nav a {
+        font-size: 0.95rem;
+        padding: 0.35rem 0.7rem;
+        min-width: 80px;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3em;
+      }
+      .products-nav .nav-icon {
+        font-size: 1.1em;
+      }
+    }
+    /* Professional Carousel Styles */
+    .product-carousel {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+      background: #000;
+    }
+    
+    .product-carousel .carousel-images {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .product-carousel .carousel-images img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.1) translateX(100px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      filter: blur(2px);
+    }
+    
+    .product-carousel .carousel-images img.active {
+      opacity: 1;
+      transform: scale(1) translateX(0);
+      filter: blur(0);
+      z-index: 2;
+    }
+    
+    .product-carousel .carousel-images img.prev {
+      opacity: 0.3;
+      transform: scale(0.95) translateX(-50px);
+      filter: blur(1px);
+      z-index: 1;
+    }
+    
+    .product-carousel .carousel-images img.next {
+      opacity: 0.3;
+      transform: scale(0.95) translateX(50px);
+      filter: blur(1px);
+      z-index: 1;
+    }
+    
+    .product-carousel .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, rgba(0, 255, 213, 0.2), rgba(0, 0, 0, 0.8));
+      backdrop-filter: blur(10px);
+      color: var(--primary-color);
+      border: 1px solid rgba(0, 255, 213, 0.3);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      z-index: 3;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    
+    .product-carousel:hover .carousel-control {
+      opacity: 0.9;
+    }
+    
+    .product-carousel .carousel-control:hover {
+      opacity: 1;
+      background: linear-gradient(135deg, rgba(0, 255, 213, 0.4), rgba(0, 0, 0, 0.9));
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 8px 25px rgba(0, 255, 213, 0.3);
+    }
+    
+    .product-carousel .carousel-control.prev {
+      right: 15px;
+    }
+    
+    .product-carousel .carousel-control.next {
+      left: 15px;
+    }
+    
+    .product-carousel .carousel-indicators {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      padding: 8px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .product-carousel .indicator {
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+    }
+    
+    .product-carousel .indicator:hover {
+      background: rgba(255, 255, 255, 0.7);
+      transform: scale(1.2);
+    }
+    
+    .product-carousel .indicator.active {
+      background: var(--primary-color);
+      box-shadow: 0 0 15px rgba(0, 255, 213, 0.6);
+      transform: scale(1.3);
+    }
+    
+    .product-carousel .indicator.active::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border: 2px solid var(--primary-color);
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: pulse-ring 2s infinite;
+    }
+    
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+    
+    /* Carousel loading animation */
+    .product-carousel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 213, 0.1), transparent);
+      transition: left 0.8s;
+      z-index: 4;
+      pointer-events: none;
+    }
+    
+    .product-carousel.loading::before {
+      left: 100%;
+    }
+
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="index.html" class="logo">404</a>
+      <div class="nav-links">
+        <a href="index.html">الرئيسية</a>
+        <a href="products.html">المنتجات</a>
+        <a href="about.html">عن الشركة</a>
+        <a href="contact.html">اتصل بنا</a>
+      </div>
+      <!-- Mobile Menu Toggle Button -->
+      <button class="menu-toggle" id="menu-toggle-btn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- قائمة التنقل السريع للأقسام -->
+  <nav class="products-nav glassy-nav" style="margin-top: 130px;">
+    <a href="#winter"><span class="nav-icon">❄️</span> شتوي</a>
+    <a href="#summer"><span class="nav-icon">☀️</span> صيفي</a>
+    <a href="#pants"><span class="nav-icon">👖</span> بنطلونات</a>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu-container">
+    <ul class="mobile-nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="products.html">المنتجات</a></li>
+        <li><a href="about.html">عن الشركة</a></li>
+        <li><a href="contact.html">اتصل بنا</a></li>
+    </ul>
+  </div>
+
+  <header class="page-header animated-item" style="animation-delay: 0.1s;">
+      <h1>مجموعتنا</h1>
+      <p>استكشف تشكيلتنا الكاملة من التيشيرتات المصممة بعناية</p>
+  </header>
+
+  <main class="products-container">
+    <!-- تقسيم المنتجات إلى أقسام -->
+    <div class="products-section winter" id="winter">
+      <h2>التيشيرتات الشتوي</h2>
+      <div class="product-card custom-design-card">
+        <svg id="custom-tshirt-icon" class="tshirt-icon" width="110" height="110" viewBox="0 0 64 64" fill="#00ffd5" xmlns="http://www.w3.org/2000/svg">
+          <g id="tshirt-body">
+            <path d="M12 8 L32 2 L52 8 L56 20 Q54 22 50 20 L50 54 Q50 58 46 58 L18 58 Q14 58 14 54 L14 20 Q10 22 8 20 Z"/>
+          </g>
+          <g id="tshirt-collar">
+            <ellipse cx="32" cy="12" rx="8" ry="4" fill="#fff" fill-opacity="0.7"/>
+          </g>
+          <g id="tshirt-shadow">
+            <path d="M32 2 L52 8 L56 20 Q54 22 50 20 L50 54 Q50 58 46 58 L32 58 Z" fill="#000" fill-opacity="0.07"/>
+          </g>
+        </svg>
+        <div class="subtitle">اختَر لون التيشيرت وجرب تصميمك الخاص!</div>
+        <div class="color-bar-label">اختر أي لون من المسطرة</div>
+        <div style="position: relative; height: 32px; width: 200px; margin: 0 auto;">
+          <div id="color-bar-indicator" class="color-bar-indicator" style="left: 0; background: #00ffd5;"></div>
+          <div id="color-bar-gradient" class="color-bar-gradient"></div>
+        </div>
+        <div class="product-info">
+          <h3>صمّم تيشيرتك الخاص</h3>
+          <p>حابب ديزاينك يكون فريد؟ اطلب تيشيرتك بتصميمك الخاص الآن!</p>
+          <div class="contact-options">
+            <button class="contact-btn">اطلب تصميمك الخاص</button>
+            <div class="dropdown-menu">
+              <a href="https://wa.me/201210888618?text=أهلاً%20وسهلاً%20بيك%20في%20براند%20404%20👕%0Aيسعدنا%20تواصلك!%20قولنا%20إيه%20المنتج%20اللي%20حابب%20تعرف%20عنه%20أكتر%20💬" target="_blank" class="dropdown-item">
+                <i class="fab fa-whatsapp whatsapp"></i>
+                <span>واتساب</span>
+              </a>
+              <a href="https://www.instagram.com/404_eg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="dropdown-item">
+                <i class="fab fa-instagram instagram"></i>
+                <span>إنستجرام</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="1 (1).jpeg" alt="تيشيرت 1">
+        <div class="product-info">
+          <h3>تيشيرت نيون دارك</h3>
+          <div class="contact-options">
+            <button class="contact-btn">اشترِ الآن</button>
+            <div class="dropdown-menu">
+              <a href="https://wa.me/201210888618?text=أهلاً%20وسهلاً%20بيك%20في%20براند%20404%20👕%0Aيسعدنا%20تواصلك!%20عايز%20أعرف%20أكتر%20عن%20تيشيرت%20نيون%20دارك%20💬" target="_blank" class="dropdown-item">
+                <i class="fab fa-whatsapp whatsapp"></i>
+                <span>واتساب</span>
+              </a>
+              <a href="https://www.instagram.com/404_eg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="dropdown-item">
+                <i class="fab fa-instagram instagram"></i>
+                <span>إنستجرام</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="1 (2).jpeg" alt="تيشيرت 2">
+        <div class="product-info">
+          <h3>تيشيرت كود خربان</h3>
+          <div class="contact-options">
+            <button class="contact-btn">اشترِ الآن</button>
+            <div class="dropdown-menu">
+              <a href="https://wa.me/201210888618?text=أهلاً%20وسهلاً%20بيك%20في%20براند%20404%20👕%0Aيسعدنا%20تواصلك!%20عايز%20أعرف%20أكتر%20عن%20تيشيرت%20كود%20خربان%20💬" target="_blank" class="dropdown-item">
+                <i class="fab fa-whatsapp whatsapp"></i>
+                <span>واتساب</span>
+              </a>
+              <a href="https://www.instagram.com/404_eg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="dropdown-item">
+                <i class="fab fa-instagram instagram"></i>
+                <span>إنستجرام</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <!-- Carousel Container -->
+      <div class="product-carousel">
+        <div class="carousel-images">
+          <img src="11.jpg" alt="تيشيرت 3 - صورة 1">
+          <img src="12.jpg" alt="تيشيرت 3 - صورة 2">
+          <img src="1 (5).jpeg" alt="تيشيرت 3 - صورة 3">
+          <!-- أضف صور إضافية هنا -->
+        </div>
+        <!-- Carousel Controls -->
+        <button class="carousel-control prev"><i class="fas fa-chevron-right"></i></button>
+        <button class="carousel-control next"><i class="fas fa-chevron-left"></i></button>
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+          <span class="indicator active"></span>
+          <span class="indicator"></span>
+          <span class="indicator"></span>
+          <!-- أضف مؤشرات إضافية هنا -->
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>تيشيرت 404 كلاسيك</h3>
+        <p>تصميم بسيط وعصري لكل الأذواق</p>
+        <a href="https://www.instagram.com/direct/t/17848019931414505" target="_blank" class="buy-btn">اشترِ الآن</a>
+      </div>
+    </div>
+
+    <div class="products-section summer" id="summer">
+      <h2>التيشيرتات الصيفي</h2>
+      <div class="product-card">
+        <!-- Carousel Container -->
+        <div class="product-carousel">
+          <div class="carousel-images">
+            <img src="11.jpg" alt="تيشيرت 3 - صورة 1">
+            <img src="12.jpg" alt="تيشيرت 3 - صورة 2">
+            <img src="1 (5).jpeg" alt="تيشيرت 3 - صورة 3">
+            <!-- أضف صور إضافية هنا -->
+          </div>
+          <!-- Carousel Controls -->
+          <button class="carousel-control prev"><i class="fas fa-chevron-right"></i></button>
+          <button class="carousel-control next"><i class="fas fa-chevron-left"></i></button>
+          <!-- Carousel Indicators -->
+          <div class="carousel-indicators">
+            <span class="indicator active"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+            <!-- أضف مؤشرات إضافية هنا -->
+          </div>
+        </div>
+        <div class="product-info">
+          <h3>تيشيرت 404 كلاسيك</h3>
+          <p>تصميم بسيط وعصري لكل الأذواق</p>
+          <div class="contact-options">
+            <button class="contact-btn">اشترِ الآن</button>
+            <div class="dropdown-menu">
+              <a href="https://wa.me/201210888618?text=أهلاً%20وسهلاً%20بيك%20في%20براند%20404%20👕%0Aيسعدنا%20تواصلك!%20عايز%20أعرف%20أكتر%20عن%20تيشيرت%20404%20كلاسيك%20💬" target="_blank" class="dropdown-item">
+                <i class="fab fa-whatsapp whatsapp"></i>
+                <span>واتساب</span>
+              </a>
+              <a href="https://www.instagram.com/404_eg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="dropdown-item">
+                <i class="fab fa-instagram instagram"></i>
+                <span>إنستجرام</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="1 (4).jpeg" alt="تيشيرت 4">
+        <div class="product-info">
+          <h3>تيشيرت نو سيجنال</h3>
+          <div class="contact-options">
+            <button class="contact-btn">اشترِ الآن</button>
+            <div class="dropdown-menu">
+              <a href="https://wa.me/201210888618?text=أهلاً%20وسهلاً%20بيك%20في%20براند%20404%20👕%0Aيسعدنا%20تواصلك!%20عايز%20أعرف%20أكتر%20عن%20تيشيرت%20نو%20سيجنال%20💬" target="_blank" class="dropdown-item">
+                <i class="fab fa-whatsapp whatsapp"></i>
+                <span>واتساب</span>
+              </a>
+              <a href="https://www.instagram.com/404_eg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="dropdown-item">
+                <i class="fab fa-instagram instagram"></i>
+                <span>إنستجرام</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      
+      <div class="product-card">
+        <img src="1 (5).jpeg" alt="تيشيرت 5">
+        <div class="product-info">
+          <h3>تيشيرت ديب مود</h3>
+          <div class="contact-options">
+            <button class="contact-btn">اشترِ الآن</button>
+            <div class="dropdown-menu">
+              <a href="https://wa.me/201210888618?text=أهلاً%20وسهلاً%20بيك%20في%20براند%20404%20👕%0Aيسعدنا%20تواصلك!%20عايز%20أعرف%20أكتر%20عن%20تيشيرت%20ديب%20مود%20💬" target="_blank" class="dropdown-item">
+                <i class="fab fa-whatsapp whatsapp"></i>
+                <span>واتساب</span>
+              </a>
+              <a href="https://www.instagram.com/404_eg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="dropdown-item">
+                <i class="fab fa-instagram instagram"></i>
+                <span>إنستجرام</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="1 (6).jpeg" alt="تيشيرت 6">
+        <div class="product-info">
+          <h3>تيشيرت جليتش</h3>
+          <div class="contact-options">
+            <button class="contact-btn">اشترِ الآن</button>
+            <div class="dropdown-menu">
+              <a href="https://wa.me/201210888618?text=أهلاً%20وسهلاً%20بيك%20في%20براند%20404%20👕%0Aيسعدنا%20تواصلك!%20عايز%20أعرف%20أكتر%20عن%20تيشيرت%20جليتش%20💬" target="_blank" class="dropdown-item">
+                <i class="fab fa-whatsapp whatsapp"></i>
+                <span>واتساب</span>
+              </a>
+              <a href="https://www.instagram.com/404_eg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="dropdown-item">
+                <i class="fab fa-instagram instagram"></i>
+                <span>إنستجرام</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="products-section pants" id="pants">
+      <h2>البنطلونات</h2>
+      <div class="product-card" style="opacity:0.7;filter:grayscale(0.5);text-align:center;">
+       
+        <div class="product-card">
+          <!-- Carousel Container -->
+          <div class="product-carousel">
+            <div class="carousel-images">
+              <img src="12.jpg" alt="تيشيرت 3 - صورة 1">
+              <img src="10.jpg" alt="تيشيرت 3 - صورة 2">
+              <img src="1 (1).jpeg" alt="تيشيرت 3 - صورة 3">
+              <!-- أضف صور إضافية هنا -->
+            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-control prev"><i class="fas fa-chevron-right"></i></button>
+            <button class="carousel-control next"><i class="fas fa-chevron-left"></i></button>
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+              <span class="indicator active"></span>
+              <span class="indicator"></span>
+              <span class="indicator"></span>
+              <!-- أضف مؤشرات إضافية هنا -->
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>تيشيرت 404 كلاسيك</h3>
+            <p>تصميم بسيط وعصري لكل الأذواق</p>
+            <div class="contact-options">
+              <button class="contact-btn">اشترِ الآن</button>
+              <div class="dropdown-menu">
+                <a href="https://wa.me/201210888618?text=أهلاً%20وسهلاً%20بيك%20في%20براند%20404%20👕%0Aيسعدنا%20تواصلك!%20عايز%20أعرف%20أكتر%20عن%20تيشيرت%20404%20كلاسيك%20💬" target="_blank" class="dropdown-item">
+                  <i class="fab fa-whatsapp whatsapp"></i>
+                  <span>واتساب</span>
+                </a>
+                <a href="https://www.instagram.com/404_eg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="dropdown-item">
+                  <i class="fab fa-instagram instagram"></i>
+                  <span>إنستجرام</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-info">
+          <h3>قريبًا: تشكيلتنا من البنطلونات</h3>
+          <p>تابعنا ليصلك كل جديد!</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="animated-item" style="animation-delay: 0.5s;">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>404</h3>
+        <p>براند مصري للشارع العالمي، نقدم تشكيلة فريدة من التيشيرتات بتصميمات مبتكرة.</p>
+        <h3> + خدمة توصيل لجميع المحافظات</h3>
+      </div>
+      <div class="footer-section">
+        <h3>روابط سريعة</h3>
+        <a href="index.html" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">الرئيسية</a>
+        <a href="products.html" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">المنتجات</a>
+        <a href="about.html" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">عن الشركة</a>
+        <a href="contact.html" style="color: var(--text-secondary); text-decoration: none; display: block; margin-bottom: 0.5rem;">اتصل بنا</a>
+      </div>
+      <div class="footer-section">
+        <h3>اتصل بنا</h3>
+        <div class="social-links">
+         
+          <a href="https://www.instagram.com/404_eg?igsh=MWdoeGE0ZjJ1dHhkNQ=="><i class="fab fa-instagram"></i></a>
+          
+        </div>
+        
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 404 - جميع الحقوق محفوظة
+    </div>
+  </footer>
+
+  <script>
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const mobileMenu = document.getElementById('mobile-menu-container');
+    const menuIcon = menuToggleBtn.querySelector('i'); // Get the icon element
+
+    menuToggleBtn.addEventListener('click', () => {
+      const isActive = mobileMenu.classList.toggle('active');
+      // Change icon based on menu state
+      if (isActive) {
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-times'); // Change to close icon
+          // Optional: Prevent body scroll when menu is open
+          // document.body.style.overflow = 'hidden';
+      } else {
+          menuIcon.classList.remove('fa-times');
+          menuIcon.classList.add('fa-bars'); // Change back to hamburger icon
+          // Optional: Restore body scroll
+          // document.body.style.overflow = '';
+      }
+    });
+
+    // Optional: Close menu if a link is clicked
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+            // document.body.style.overflow = ''; // Restore scroll
+        });
+    });
+
+    // Optional: Close menu if clicked outside
+    document.addEventListener('click', (event) => {
+        // Check if the click is outside the menu and the toggle button
+        if (!mobileMenu.contains(event.target) && !menuToggleBtn.contains(event.target) && mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+            // document.body.style.overflow = ''; // Restore scroll
+        }
+    });
+
+    // T-shirt color bar gradient logic + bounce animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const tshirtIcon = document.getElementById('custom-tshirt-icon');
+      const colorBar = document.getElementById('color-bar-gradient');
+      const indicator = document.getElementById('color-bar-indicator');
+      // Create a canvas to get color from gradient
+      const canvas = document.createElement('canvas');
+      canvas.width = colorBar.offsetWidth;
+      canvas.height = colorBar.offsetHeight;
+      const ctx = canvas.getContext('2d');
+      // Draw the same gradient as the bar
+      const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+      grad.addColorStop(0,   '#ff0000');
+      grad.addColorStop(0.17,'#ffff00');
+      grad.addColorStop(0.33,'#00ff00');
+      grad.addColorStop(0.50,'#00ffff');
+      grad.addColorStop(0.67,'#0000ff');
+      grad.addColorStop(0.83,'#ff00ff');
+      grad.addColorStop(1,   '#ff0000');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Helper to get color at x
+      function getColorAt(x) {
+        const data = ctx.getImageData(x, canvas.height/2, 1, 1).data;
+        return `rgb(${data[0]},${data[1]},${data[2]})`;
+      }
+      // Set initial color
+      let currentX = Math.round(canvas.width * 0.2);
+      function setColor(x) {
+        x = Math.max(0, Math.min(canvas.width-1, x));
+        const color = getColorAt(x);
+        tshirtIcon.setAttribute('fill', color);
+        indicator.style.left = (x-14) + 'px';
+        indicator.style.background = color;
+        currentX = x;
+        // Bounce animation
+        tshirtIcon.classList.remove('tshirt-bounce');
+        void tshirtIcon.offsetWidth; // force reflow
+        tshirtIcon.classList.add('tshirt-bounce');
+      }
+      setColor(currentX);
+      colorBar.addEventListener('click', function(e) {
+        const rect = colorBar.getBoundingClientRect();
+        const x = Math.round((e.clientX - rect.left) * (canvas.width / rect.width));
+        setColor(x);
+      });
+      // Optional: drag to pick color
+      let dragging = false;
+      colorBar.addEventListener('mousedown', function(e) { dragging = true; });
+      document.addEventListener('mouseup', function() { dragging = false; });
+      colorBar.addEventListener('mousemove', function(e) {
+        if (!dragging) return;
+        const rect = colorBar.getBoundingClientRect();
+        const x = Math.round((e.clientX - rect.left) * (canvas.width / rect.width));
+        setColor(x);
+      });
+      // Touch support
+      colorBar.addEventListener('touchstart', function(e) { dragging = true; });
+      colorBar.addEventListener('touchend', function(e) { dragging = false; });
+      colorBar.addEventListener('touchmove', function(e) {
+        if (!dragging) return;
+        const rect = colorBar.getBoundingClientRect();
+        const touch = e.touches[0];
+        const x = Math.round((touch.clientX - rect.left) * (canvas.width / rect.width));
+        setColor(x);
+      });
+    });
+
+    // Highlight active nav link on click and on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.products-nav a');
+      function removeActive() {
+        navLinks.forEach(link => link.classList.remove('active'));
+      }
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          removeActive();
+          this.classList.add('active');
+        });
+      });
+      // Highlight on scroll
+      const sectionIds = ['winter','summer','pants'];
+      const sectionElements = sectionIds.map(id => document.getElementById(id));
+      window.addEventListener('scroll', function() {
+        let found = false;
+        for (let i = 0; i < sectionElements.length; i++) {
+          const sec = sectionElements[i];
+          if (sec) {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top <= 120 && rect.bottom > 120) {
+              removeActive();
+              navLinks[i].classList.add('active');
+              found = true;
+              break;
+            }
+          }
+        }
+        if (!found) removeActive();
+      });
+    });
+
+    // Professional Carousel Script
+    document.querySelectorAll('.product-carousel').forEach(carousel => {
+      const imagesContainer = carousel.querySelector('.carousel-images');
+      const images = imagesContainer.querySelectorAll('img');
+      const indicators = carousel.querySelectorAll('.indicator');
+      const prevButton = carousel.querySelector('.carousel-control.prev');
+      const nextButton = carousel.querySelector('.carousel-control.next');
+      let currentIndex = 0;
+      let isTransitioning = false;
+
+      function updateCarousel(direction = 'next') {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        // Add loading effect
+        carousel.classList.add('loading');
+        setTimeout(() => carousel.classList.remove('loading'), 800);
+
+        images.forEach((img, index) => {
+          img.classList.remove('active', 'prev', 'next');
+          
+          if (index === currentIndex) {
+            img.classList.add('active');
+          } else if (index === (currentIndex - 1 + images.length) % images.length) {
+            img.classList.add('prev');
+          } else if (index === (currentIndex + 1) % images.length) {
+            img.classList.add('next');
+          }
+        });
+
+        // Update indicators with stagger effect
+        indicators.forEach((ind, index) => {
+          ind.classList.remove('active');
+          if (index === currentIndex) {
+            setTimeout(() => ind.classList.add('active'), 200);
+          }
+        });
+
+        // Reset transition lock
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 400);
+      }
+
+      function nextSlide() {
+        if (isTransitioning) return;
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel('next');
+      }
+
+      function prevSlide() {
+        if (isTransitioning) return;
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateCarousel('prev');
+      }
+
+      function goToSlide(index) {
+        if (isTransitioning || index === currentIndex) return;
+        currentIndex = index;
+        updateCarousel();
+      }
+
+      // Event listeners
+      nextButton.addEventListener('click', nextSlide);
+      prevButton.addEventListener('click', prevSlide);
+
+      indicators.forEach((ind, index) => {
+        ind.addEventListener('click', () => goToSlide(index));
+      });
+
+      // Touch/swipe support
+      let startX = 0;
+      let startY = 0;
+      let isDragging = false;
+
+      carousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isDragging = true;
+      }, { passive: true });
+
+      carousel.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+      }, { passive: false });
+
+      carousel.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        const diffX = startX - endX;
+        const diffY = startY - endY;
+
+        // Check if horizontal swipe is more significant than vertical
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+          if (diffX > 0) {
+            nextSlide(); // Swipe left (next)
+          } else {
+            prevSlide(); // Swipe right (prev)
+          }
+        }
+      }, { passive: true });
+
+      // Mouse drag support
+      let mouseStartX = 0;
+      let isMouseDragging = false;
+
+      carousel.addEventListener('mousedown', (e) => {
+        mouseStartX = e.clientX;
+        isMouseDragging = true;
+        carousel.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isMouseDragging) return;
+        e.preventDefault();
+      });
+
+      document.addEventListener('mouseup', (e) => {
+        if (!isMouseDragging) return;
+        isMouseDragging = false;
+        carousel.style.cursor = 'grab';
+
+        const diffX = mouseStartX - e.clientX;
+        if (Math.abs(diffX) > 50) {
+          if (diffX > 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+        }
+      });
+
+      // Auto-play functionality (optional)
+      let autoPlayInterval;
+      const startAutoPlay = () => {
+        autoPlayInterval = setInterval(nextSlide, 5000);
+      };
+
+      const stopAutoPlay = () => {
+        clearInterval(autoPlayInterval);
+      };
+
+      // Pause auto-play on hover
+      carousel.addEventListener('mouseenter', stopAutoPlay);
+      carousel.addEventListener('mouseleave', startAutoPlay);
+
+             // Initialize carousel
+       updateCarousel();
+       startAutoPlay();
+
+       // Keyboard navigation
+       document.addEventListener('keydown', (e) => {
+         if (carousel.matches(':hover')) {
+           if (e.key === 'ArrowLeft') {
+             e.preventDefault();
+             prevSlide();
+           } else if (e.key === 'ArrowRight') {
+             e.preventDefault();
+             nextSlide();
+           }
+         }
+       });
+     });
+
+     // Contact Options Dropdown Script
+     document.querySelectorAll('.contact-options').forEach(contactOption => {
+       const btn = contactOption.querySelector('.contact-btn');
+       const dropdown = contactOption.querySelector('.dropdown-menu');
+
+       btn.addEventListener('click', (e) => {
+         e.preventDefault();
+         e.stopPropagation();
+         
+         // Close all other dropdowns
+         document.querySelectorAll('.contact-options').forEach(other => {
+           if (other !== contactOption) {
+             other.classList.remove('active');
+           }
+         });
+         
+         // Toggle current dropdown
+         contactOption.classList.toggle('active');
+       });
+
+       // Close dropdown when clicking outside
+       document.addEventListener('click', (e) => {
+         if (!contactOption.contains(e.target)) {
+           contactOption.classList.remove('active');
+         }
+       });
+
+       // Close dropdown when pressing Escape
+       document.addEventListener('keydown', (e) => {
+         if (e.key === 'Escape') {
+           contactOption.classList.remove('active');
+         }
+       });
+     });
+  </script>
+</body>
+</html> 
